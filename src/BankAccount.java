@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BankAccount{
     private final String accountName;
@@ -14,6 +15,24 @@ public class BankAccount{
     private LocalDateTime accountDeletion;
     public DateTimeFormatter formattedDate =DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     
+    //model to generate random account number
+    // private String accountNumGenerator() {
+    //     int startAsciNo = 65;
+    //     int endAsciNo = 90;
+    //     int accountNoLength = 10;
+
+    //     Random random = new Random();
+    //     String accountNo = "";
+
+    //     for (int i= 0; i < accountNoLength; i++) {
+    //         int randomValue = startAsciNo + (int)(random.nextFloat()* (endAsciNo - startAsciNo + 1));
+
+    //         accountNo = accountNo + (char) randomValue;
+    //     }
+    //     return accountNo;
+    // }
+
+
     public BankAccount(String accountName) {
         this.accountName = accountName;
         this.accountBal = 0.0f;
@@ -60,7 +79,7 @@ public class BankAccount{
 
 
     public void deposit(float depositAmount) {
-        if (depositAmount > 0 && !accountClosure) {
+        if (depositAmount > 0 && !this.accountClosure) {
             this.accountBal += depositAmount;
             System.out.println("$" + depositAmount + " deposited on " + LocalDateTime.now().format(formattedDate));
             System.out.println("Your new account balance is $" + this.accountBal);
@@ -71,7 +90,7 @@ public class BankAccount{
     }
 
     public void withdraw(float withdrawAmount) {
-        if (withdrawAmount > 0 && !accountClosure) {
+        if (withdrawAmount > 0 && !this.accountClosure) {
             if (withdrawAmount <= this.accountBal) {
             this.accountBal -= withdrawAmount;
             System.out.println("$" + withdrawAmount + " withdrew on " + LocalDateTime.now().format(formattedDate));

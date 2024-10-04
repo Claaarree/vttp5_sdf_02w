@@ -102,6 +102,15 @@ public class BankAccount{
         } else System.out.println("Unable to process, please try again.");
     }
 
+    public void closeAccount() {
+        this.accountDeletion= LocalDateTime.now();
+        String closedOn = this.accountDeletion.format(formattedDate);
+        this.accountClosure = true;
+        System.out.println("Account closed on " + closedOn);
+
+
+    }
+
     
 
     @Override
